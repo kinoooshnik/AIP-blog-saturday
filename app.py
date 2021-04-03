@@ -5,10 +5,11 @@ from flask_migrate import Migrate
 from forms import ArticleForm, LoginForm, RegistrationForm
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
+import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db?check_same_thread=False'
-app.config['SECRET_KEY'] = 'you-will-never-guess'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ["DATABASE_URL"]
+app.config['SECRET_KEY'] = os.environ["SECRET_KEY"]
 db.app = app
 db.init_app(app)
 migrate = Migrate(app, db)

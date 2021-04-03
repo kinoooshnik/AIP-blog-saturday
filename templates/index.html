@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Главная страница
+{% endblock %}
+
+{% block content %}
+    <h1>Последние посты</h1>
+
+    <div class="row mb-2">
+    {% for article in articles %}
+
+        <article class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <h3 class="mb-0">{{ article.title }}</h3>
+                    <div class="mb-1 text-muted"><p><small>{{ article.user.username }}, 5 минут назад</small></p></div>
+                    <p class="card-text mb-auto">{{ article.body }}</p>
+                    <a href="{{ url_for('get_article', article_id=article.id) }}">Читать дальше</a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img src="https://images.unsplash.com/photo-1488654715439-fbf461f0eb8d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" width="250">
+                </div>
+            </div>
+        </article>
+
+    {% endfor %}
+    </div>
+{% endblock %}

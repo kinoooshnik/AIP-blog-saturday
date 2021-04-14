@@ -8,7 +8,7 @@ from flask_login import LoginManager, login_user, logout_user, current_user, log
 import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ["DATABASE_URL"].replace("://", "ql://", 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ["DATABASE_URL"].replace("postgres://", "postgresql://", 1)
 app.config['SECRET_KEY'] = os.environ["SECRET_KEY"]
 db.app = app
 db.init_app(app)
